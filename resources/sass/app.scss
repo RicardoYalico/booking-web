@@ -1,0 +1,164 @@
+// Variables
+//@import "variables";
+@import "~bootswatch/dist/cosmo/variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+@import "~bootswatch/dist/cosmo/bootswatch";
+
+// select2
+@import "~select2/dist/css/select2";
+@import "~select2-bootstrap-theme/dist/select2-bootstrap";
+
+@import "../css/bootstrap-datepicker3.css";
+
+// heartbeat animation
+@import "./heartbeat";
+
+body {
+  // font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+h1 {
+  margin-top: 15px;
+}
+
+.search__input {
+  width: 300px !important;
+}
+
+.datepicker {
+  z-index: 1002;
+}
+
+table.floatThead-table {
+  border-top: none;
+  border-bottom: none;
+  background-color: #FFF;
+}
+
+.table span.roomname {
+  display: block;
+}
+
+#planning__data.table-print {
+  table-layout: fixed;
+  td {
+    white-space: unset;
+  }
+  td hr:last-child {
+    display: none;
+  }
+
+  .booking-card {
+    text-align: left;
+    span:first-child {
+      font-weight: bold;
+    }
+  }
+
+  .fa-ul {
+    margin-top: 5px;
+    margin-left: 25px;
+    margin: 10px 0 0 25px;
+  }
+}
+
+.print-notes {
+  &>div>div {
+    border: 1px solid $gray-300;
+  }
+  h4 {
+    text-transform: uppercase;
+  }
+  p {
+    margin: 0;
+    white-space: pre;
+  }
+}
+
+#planning__container {
+  position: relative;
+}
+
+#planning__grid {
+  color: white;
+}
+
+.day__now {
+  background-color: $gray-300;
+  // color: white;
+}
+.striped {
+  // background-color: rgba(0,0,0,.05);
+  border-top: 2px solid $gray-600;
+}
+
+.booked, .booked a {
+  color: white;
+  text-shadow: 0 0 2px #000;
+}
+.booked.reversed, .booked.reversed a {
+  color: black;
+  text-shadow: 0 0 2px #fff;
+}
+
+#planning__data {
+  td {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0.50rem 0.75rem;
+  }
+
+  th.day {
+    width: 11.5%;
+  }
+
+  td a.book__link {
+    display: none;
+    margin: -0.50rem -0.75rem;
+    padding: 0.50rem 0.75rem;
+  }
+  td:hover a.book__link {
+    display: block;
+  }
+
+  td.booked {
+    text-align: center;
+  }
+
+  td.non-bookable {
+    background-color: $gray-200;
+  }
+
+  tr.layout-split {
+    border-top: 2px solid $gray-500;
+  }
+}
+
+.tooltip {
+  .fa-ul {
+    margin-left: 1.5rem;
+    margin-bottom: 0;
+  }
+  .tooltip-inner {
+    text-align: left;
+  }
+}
+
+tr.booking__now, tr.booking__now a {
+  color: white;
+  text-shadow: 0 0 2px #000;
+}
+tr.booking__now.reversed, tr.booking__now.reversed a {
+  color: black;
+  text-shadow: 0 0 2px #fff;
+}
+
+.heartbeat {
+  -webkit-animation: heartbeat 1.5s ease-in-out forwards;
+          animation: heartbeat 1.5s ease-in-out forwards;
+}
