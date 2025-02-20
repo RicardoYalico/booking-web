@@ -23,9 +23,12 @@ WORKDIR /var/www
 # Copiar código fuente
 COPY . .
 
+RUN cp .env.example .env
+
 # Configurar Laravel
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN cp .env.example .env
+RUN composer require barryvdh/laravel-debugbar --no-plugins
+
 RUN composer install --no-dev --optimize-autoloader
 RUN php artisan config:cache
 RUN chmod -R 777 storage bootstrap/cache
