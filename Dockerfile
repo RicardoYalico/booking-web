@@ -40,5 +40,9 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 # Exponer puertos
 EXPOSE 80
 
-# Iniciar Nginx y PHP-FPM
-CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
+# # Iniciar Nginx y PHP-FPM
+# CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
+
+
+# Comando para iniciar Laravel
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
