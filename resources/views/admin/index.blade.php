@@ -28,7 +28,7 @@
     </li>
     @can('edit.users')
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#users">Gebruikers</a>
+        <a class="nav-link" data-toggle="tab" href="#users">Usuarios</a>
     </li>
     @endcan
     <li class="nav-item">
