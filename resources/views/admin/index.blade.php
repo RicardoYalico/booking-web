@@ -39,10 +39,10 @@
     <div class="col">
         <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade show active" id="profile">
-            <a href="{{ route('profile.update') }}" class="btn btn-success">Profiel aanpassen</a>
+            <a href="{{ route('profile.update') }}" class="btn btn-success">Editar perfil</a>
             <table class="table table-hover mt-4">
                 <tr>
-                    <th>Naam</th>
+                    <th>Nombre</th>
                     <td>{{ $user->name }}</td>
                 </tr>
 
@@ -52,19 +52,19 @@
                 </tr>
 
                 <tr>
-                    <th>Gebruikersnaam</th>
+                    <th>Nombre de usuario</th>
                     <td>{{ $user->username }}</td>
                 </tr>
             </table>
         </div>
         @can('edit.users')
         <div class="tab-pane fade" id="users">
-            <a href="{{ route('user.create') }}" class="btn btn-success">Gebruiker toevoegen</a>
+            <a href="{{ route('user.create') }}" class="btn btn-success">Agregar usuario</a>
             <table class="table table-hover mt-4">
                 <thead>
                 <tr>
-                    <th>Gebruikersnaam</th>
-                    <th>Naam</th>
+                    <th>Nombre de usuario</th>
+                    <th>Nombre</th>
                     <th>Email</th>
                     <th>Rol</th>
                     <th width="5%"></th>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="new-password_confirmation" class="col-sm-3 offset-sm-2 col-form-label">Herhaal nieuw wachtwoord</label>
+                    <label for="new-password_confirmation" class="col-sm-3 offset-sm-2 col-form-label">Repetir nueva contraseña</label>
                     <div class="col-sm-5">
                         <input id="new-password_confirmation" type="password" class="form-control" name="new-password_confirmation" required autofocus>
                     </div>
@@ -128,7 +128,7 @@
                 <div class="form-group row">
                     <div class="col-md-5 offset-md-5">
                         <button type="submit" class="btn btn-primary">
-                            Aanpassen
+                            Modificar
                         </button>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nieuwe gast</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo invitado</h5>
         <button class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -151,12 +151,12 @@
         <div class="row">
             <div class="col-sm">
                 <div class="form-group">
-                <label for="firstnameInput">Voornaam</label>
+                <label for="firstnameInput">Nombre de pila</label>
                 <input class="form-control" name="firstname" id="firstnameInput"  autocomplete="off" type="text" required
                 @if(isset($guest)) value="{{ $guest->firstname }}" @endif>
                 </div>
                 <div class="form-group">
-                <label for="lastnameInput">Familienaam</label>
+                <label for="lastnameInput">Apellido</label>
                 <input class="form-control" name="lastname" id="lastnameInput"  autocomplete="off" type="text" required
                 @if(isset($guest)) value="{{ $guest->lastname }}" @endif>
                 </div>
@@ -166,7 +166,7 @@
                 @if(isset($guest)) value="{{ $guest->email }}" @endif>
                 </div>
                 <div class="form-group">
-                <label for="phoneInput">GSM nummer</label>
+                <label for="phoneInput">Teléfono</label>
                 <input class="form-control" name="phone" id="phoneInput" autocomplete="off" type="text"
                 @if(isset($guest)) value="{{ $guest->phone }}" @endif>
                 </div>
@@ -185,8 +185,8 @@
 
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
-        <button class="btn btn-primary" id="saveGuest">Opslaan</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-primary" id="saveGuest">Guardar</button>
       </div>
     </div>
   </div>

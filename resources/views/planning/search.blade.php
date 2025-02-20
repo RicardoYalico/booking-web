@@ -5,20 +5,20 @@
 
 @if (count($bookings) == 0)
 <div class="alert alert-warning">
-  <h4 class="alert-heading">Oeps!</h4>
-  <p class="mb-0">Geen boekingen gevonden.</p>
+  <h4 class="alert-heading">¡Ups!</h4>
+  <p class="mb-0">No se encontraron reservas.</p>
 </div>
 @else
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Van</th>
-      <th>Tot</th>
-      <th>Boeker</th>
-      <th>Land</th>
-      <th># gasten</th>
-      <th>Kamer</th>
+<th>Desde</th>
+ <th>Hasta</th>
+ <th>Libro de reservas</th>
+ <th>País</th>
+ <th># invitados</th>
+ <th>Habitación</th>
   </thead>
   <tbody>
     @foreach($bookings as $booking)

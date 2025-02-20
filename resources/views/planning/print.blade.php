@@ -15,11 +15,11 @@
         <a href="{{ route('print', ['date' => $dates[0]['date']->copy()->addWeek()->toDateString()]) }}" class="btn btn-primary" id="btn__next"><i class="fa fa-chevron-right"></i></a>
       </div>
 
-      <a href="{{ route('print') }}" class="btn btn-secondary mb-2">Vandaag</a>
+      <a href="{{ route('print') }}" class="btn btn-secondary mb-2">Hoy</a>
     </div>
 
     <div>
-      <a href="#" id="printBtn" class="btn btn-secondary mb-2 js-print">Print <i class="fas fa-print fa-sm"></i></a>
+      <a href="#" id="printBtn" class="btn btn-secondary mb-2 js-print">Imprimir <i class="fas fa-print fa-sm"></i></a>
     </div>
   </div>
 </div>
@@ -75,7 +75,7 @@
                       <li><span class="fa-li"><i class="fas fa-comments"></i></span>{{ $b->comments }}</li>
                     @endisset
                     @if($b->properties->options['asWhole'])
-                      <li><span class="fa-li"><i class="far fa-check-square"></i></span>Volledig geboekt</li>
+                      <li><span class="fa-li"><i class="far fa-check-square"></i></span>Completamente reservado</li>
                     @endif
                   </ul>
                 </div>

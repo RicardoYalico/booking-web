@@ -5,39 +5,39 @@
 @section('content')
 
 <a class="btn btn-primary mt-2 mb-4" href="{{ route('planning', ['date' => $booking->arrival->toDateString() ]) }}">
-  Terug naar weekoverzicht</a>
+  Volver al resumen semanal</a>
 
 <div class="row mt-2">
   <div class="col-sm">
-    <h3>Boeking info
+    <h3>Información de reserva
       @can('edit.booking')
       <a href="{{ route('booking.delete', $booking) }}" class="btn btn-danger float-right js-delete"><i class="far fa-trash-alt"> </i></a>
-      <a href="{{ route('booking.edit', $booking) }}" class="btn btn-primary float-right">Wijzig boeking</a>
+      <a href="{{ route('booking.edit', $booking) }}" class="btn btn-primary float-right">Cambiar reserva</a>
       @endcan
     </h3>
     <table class="table table-hover mt-2">
       <tr>
-        <th>Aankomst</th>
+        <th>Llegada</th>
         <td>{{ $booking->arrival->formatLocalized('%a, %e %b %Y') }} &mdash; {{ $booking->arrival->formatLocalized('%H:%M') }}</td>
       </tr>
 
       <tr>
-        <th>Vertrek</th>
+        <th>Partida</th>
         <td>{{ $booking->departure->formatLocalized('%a, %e %b %Y') }}</td>
       </tr>
 
       <tr>
-        <th># gasten</th>
+        <th># huéspedes</th>
         <td>{{ $booking->guests }}</td>
       </tr>
 
       <tr>
-        <th>Samenstelling</th>
+        <th>Compuesto</th>
         <td>{{ $booking->composition }}</td>
       </tr>
 
       <tr>
-        <th>Kamer</th>
+        <th>Habitación</th>
         <td>
           {{ $booking->rooms[0]->name }}
           @if ($booking->rooms[0]->properties->options['part'] != -1)
@@ -47,27 +47,27 @@
       </tr>
 
       <tr>
-        <th>Basis prijs</th>
+        <th>Precio básico</th>
         <td>&euro;&nbsp;{{ $booking->basePrice }}</td>
       </tr>
 
       <tr>
-        <th>Korting</th>
+        <th>Descuento</th>
         <td>{{ $booking->discount }}&nbsp;%</td>
       </tr>
 
       <tr>
-        <th>Voorschot</th>
+        <th>Anticipo</th>
         <td>&euro;&nbsp;{{ $booking->deposit }}</td>
       </tr>
 
       <tr>
-        <th>Te betalen</th>
+        <th>A pagar</th>
         <td>&euro;&nbsp;{{ $booking->remaining }}</td>
       </tr>
 
       <tr>
-        <th>Opmerkingen</th>
+        <th>Comentarios</th>
         <td>{!! nl2br($booking->comments) !!}</td>
       </tr>
     </table>
@@ -77,12 +77,12 @@
   <div class="col-sm">
     <h3>Boeker
       @can('edit.booking')
-      <a href="{{ route('guest.edit', [$booking, $booking->customer]) }}" class="btn btn-primary float-right">Wijzig boeker</a>
+      <a href="{{ route('guest.edit', [$booking, $booking->customer]) }}" class="btn btn-primary float-right">Cambiar de reserva</a>
       @endcan
     </h3>
     <table class="table table-hover mt-2">
       <tr>
-        <th>Naam</th>
+        <th>Nombre</th>
         <td
           class="booked {{ $booking->color()['luma'] > 180.0 ? 'reversed' : '' }}"
           style="background-color: {{ $booking->color()['color'] }}">
@@ -94,11 +94,11 @@
         <td><a href="mailto:{{ $booking->customer->email }}">{{ $booking->customer->email }}</a></td>
       </tr>
       <tr>
-        <th>GSM</th>
+        <th>Teléfono</th>
         <td><a href="tel:{{ $booking->customer->phone }}">{{ $booking->customer->phone }}</a></td>
       </tr>
       <tr>
-        <th>Land</th>
+        <th>País</th>
         <td>{{ $booking->customer->country_str }}</td>
       </tr>
     </table>

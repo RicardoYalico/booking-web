@@ -28,7 +28,7 @@
   <div class="row justify-content-md-center">
     <div class="col-6">
       <div class="form-group">
-        <label for="arrivalInput">Aankomst</label>
+        <label for="arrivalInput">Llegada</label>
         <div class="input-group date">
           <input type="date" class="form-control actual_range" name="arrival" id="arrivalInput" autocomplete="off" required
             @if(old('arrival')) value="{{ Carbon\Carbon::parse(old('arrival'))->format('Y-m-d') }}"
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="departureInput">Vertrek</label>
+        <label for="departureInput">Partida</label>
         <div class="input-group date">
           <input type="date" class="form-control actual_range" name="departure" id="departureInput" autocomplete="off" required
             @if(old('departure')) value="{{ Carbon\Carbon::parse(old('departure'))->format('Y-m-d') }}"
@@ -67,10 +67,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="customerSelect">Hoofdboeker</label>
+        <label for="customerSelect">Reservador principal</label>
         <select class="form-control custom-select" name="customer" id="customerSelect" placeholder="Selecteer gast...">
           <option></option>
-          <option value="new-guest">Nieuwe gast...</option>
+          <option value="new-guest">Nuevo invitado...</option>
           @foreach($guests as $guest)
             <option
               @if(old('customer') == $guest->id) selected
@@ -95,7 +95,7 @@
           @elseif(isset($options) && $options['asWhole']) checked
           @endif>
         <label class="form-check-label" for="asWholeCheck">
-          Kamer volledig boeken?
+          ¿Reservar tu habitación completamente?
         </label>
       </div>
     </div>
@@ -132,7 +132,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="discountInput">Korting</label>
+        <label for="discountInput">Descuento</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">%</span>
@@ -144,7 +144,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="depositInput">Voorschot</label>
+        <label for="depositInput">Anticipo</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">€</span>
@@ -160,7 +160,7 @@
   <div class="row justify-content-md-center mt-4">
     <div class="col-12">
       <div class="form-group">
-        <label for="compositionTextArea">Samenstelling</label>
+        <label for="compositionTextArea">Compuesto</label>
         <textarea class="form-control" name="composition" id="compositionTextArea" rows="5">@if(old('composition')) {{ old('composition') }}@elseif(isset($booking) && $booking->composition) {{ $booking->composition }}@endif</textarea>
       </div>
     </div>
@@ -168,16 +168,16 @@
   <div class="row justify-content-md-center">
     <div class="col-12">
       <div class="form-group">
-        <label for="commentTextArea">Opmerkingen / Extra info</label>
+        <label for="commentTextArea">Comentarios / Información adicional</label>
         <textarea class="form-control" name="comments" id="commentTextArea" rows="5">@if(old('comments')) {{ old('comments') }}@elseif(isset($booking) && $booking->comments) {{ $booking->comments }}@endif</textarea>
       </div>
     </div>
   </div>
     @if(isset($booking))
-      <a href="{{ route('booking.delete', $booking) }}" class="btn btn-danger">Verwijder boeking</a>
-      <button type="submit" class="btn btn-primary float-right">Opslaan!</button>
+      <a href="{{ route('booking.delete', $booking) }}" class="btn btn-danger">Eliminar reserva</a>
+      <button type="submit" class="btn btn-primary float-right">Guardar!</button>
     @else
-      <button type="submit" class="btn btn-primary float-right">Voeg toe!</button>
+      <button type="submit" class="btn btn-primary float-right">Añadir!</button>
     @endif
   </fieldset>
 </form>
@@ -186,7 +186,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nieuwe gast</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo invitado</h5>
         <button class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -196,8 +196,8 @@
         @include('guests.create_form')
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
-        <button class="btn btn-primary" id="saveGuest">Opslaan</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button class="btn btn-primary" id="saveGuest">Guardar</button>
       </div>
     </div>
   </div>
