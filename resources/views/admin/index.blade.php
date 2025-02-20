@@ -24,7 +24,7 @@
 @endif
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active show" data-toggle="tab" href="#profile">Profiel</a>
+        <a class="nav-link active show" data-toggle="tab" href="#profile">Perfil</a>
     </li>
     @can('edit.users')
     <li class="nav-item">
