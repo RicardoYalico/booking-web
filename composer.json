@@ -15,8 +15,7 @@
         "laravel/tinker": "^2.5",
         "nesbot/carbon": "^2.31",
         "umpirsky/country-list": "^2.0",
-        "vcarreira/country-list": "dev-master",
-        "barryvdh/laravel-debugbar": "^3.1"
+        "vcarreira/country-list": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
