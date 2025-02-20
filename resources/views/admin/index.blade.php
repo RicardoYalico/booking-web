@@ -32,7 +32,7 @@
     </li>
     @endcan
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#password">Wachtwoord veranderen</a>
+        <a class="nav-link" data-toggle="tab" href="#password">Cambiar la contraseña</a>
     </li>
 </ul>
 <div class="row mt-4">
