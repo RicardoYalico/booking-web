@@ -1,6 +1,7 @@
 FROM php:7.3-fpm
 
     
+COPY /bootstrap/cache /bootstrap/cache
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     unzip \
@@ -30,9 +31,7 @@ RUN cp .env.example .env
 RUN composer require barryvdh/laravel-debugbar --no-plugins
 
 # Instalar dependencias de PHP
-RUN composer install --no-dev --optimize-autoloader && \
-    php artisan config:cache && \
-    php artisan view:cache
+RUN composer install --no-dev --optimize-autoloader
 
 # Configurar permisos de almacenamiento y caché
 RUN chmod -R 777 storage bootstrap/cache
