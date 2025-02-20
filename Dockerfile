@@ -42,5 +42,5 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Exponer el puerto 80
 EXPOSE 80
 
-# Iniciar supervisord (Nginx + PHP-FPM)
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Comando para iniciar Laravel
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
