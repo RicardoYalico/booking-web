@@ -1,7 +1,7 @@
 FROM php:7.3-fpm
 
     
-COPY /bootstrap/cache /bootstrap/cache
+COPY bootstrap/cache bootstrap/cache
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     unzip \
