@@ -1,5 +1,8 @@
 FROM php:7.3-fpm
 
+COPY bootstrap/cache bootstrap/cache
+COPY default.conf ./
+
 # Instalar dependencias
 RUN apt-get update && apt-get install -y \
     unzip \
@@ -20,6 +23,10 @@ WORKDIR /var/www
 
 # Copiar archivos
 COPY . .
+
+RUN composer require barryvdh/laravel-debugbar --no-plugins
+
+RUN cp .env.example .env
 
 # Instalar dependencias de PHP
 RUN composer install --no-dev --optimize-autoloader
