@@ -24,6 +24,8 @@ WORKDIR /var/www
 # Copiar archivos
 COPY . .
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 RUN composer require barryvdh/laravel-debugbar --no-plugins
 
 RUN cp .env.example .env
