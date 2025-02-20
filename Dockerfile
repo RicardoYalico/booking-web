@@ -1,9 +1,7 @@
+# Imagen base con PHP y FPM
 FROM php:7.3-fpm
 
-COPY bootstrap/cache bootstrap/cache
-COPY default.conf ./
-
-# Instalar dependencias
+# Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y \
     unzip \
     git \
@@ -13,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libxml2-dev \
     nginx \
+    supervisor \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install pdo_mysql mbstring gd xml
 
@@ -21,30 +20,24 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /var/www
 
-# Copiar archivos
+# Copiar código fuente
 COPY . .
 
+# Configurar Laravel
 ENV COMPOSER_ALLOW_SUPERUSER=1
-
-RUN composer require barryvdh/laravel-debugbar --no-plugins
-
 RUN cp .env.example .env
-
-# Instalar dependencias de PHP
 RUN composer install --no-dev --optimize-autoloader
-
-# Configurar permisos
+RUN php artisan config:cache
 RUN chmod -R 777 storage bootstrap/cache
 
 # Copiar configuración de Nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Exponer puertos
+# Configurar Supervisor para manejar procesos
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Exponer el puerto 80
 EXPOSE 80
 
-# # Iniciar Nginx y PHP-FPM
-# CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
-
-
-# Comando para iniciar Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Iniciar supervisord (Nginx + PHP-FPM)
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
