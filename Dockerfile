@@ -1,46 +1,37 @@
-# Imagen base con PHP y FPM
+# Usar una imagen base de PHP 7.3 con FPM
 FROM php:7.3-fpm
 
 # Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y \
-    unzip \
     git \
-    curl \
+    unzip \
     libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
+    libonig-dev \
     libxml2-dev \
+    libzip-dev \
     nginx \
-    supervisor \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install pdo_mysql mbstring gd xml
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Instalar Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+# Establecer el directorio de trabajo
+WORKDIR /var/www/html
 
-# Copiar código fuente
+# Copiar el código de la aplicación
 COPY . .
 
-RUN cp .env.example .env
+# Instalar dependencias de Composer
+RUN composer install --optimize-autoloader --no-dev
 
-# Configurar Laravel
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer require barryvdh/laravel-debugbar --no-plugins
+# Configurar permisos
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-RUN composer install --no-dev --optimize-autoloader
-RUN php artisan config:cache
-RUN chmod -R 777 storage bootstrap/cache
+# Copiar la configuración de Nginx
+COPY nginx.conf /etc/nginx/sites-available/default
 
-# Copiar configuración de Nginx
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-# Configurar Supervisor para manejar procesos
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Exponer el puerto 80
+# Exponer el puerto 80 para Nginx
 EXPOSE 80
 
-# Comando para iniciar Laravel
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# Comando para iniciar Nginx y PHP-FPM
+CMD service nginx start && php-fpm
