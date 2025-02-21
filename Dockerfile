@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libzip-dev \
     nginx \
+    supervisor \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Instalar Composer
@@ -30,8 +31,11 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Copiar la configuración de Nginx
 COPY nginx.conf /etc/nginx/sites-available/default
 
-# Exponer el puerto 80 para Nginx
+# Copiar el archivo de supervisord
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Exponer el puerto 80
 EXPOSE 80
 
-# Comando para iniciar Nginx y PHP-FPM
-CMD service nginx start && php-fpm
+# Usar supervisord para ejecutar Nginx y PHP-FPM
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
