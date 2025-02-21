@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group col-md-10 offset-md-1" {{ $errors->has('username') ? ' has-error' : '' }}>
-                            <label for="username" class="control-label">Gebruikersnaam</label>
+                            <label for="username" class="control-label">Nombre de usuario</label>
 
                             <div>
                                 <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group col-md-10 offset-md-1" {{ $errors->has('password') ? ' has-error' : '' }}>
-                            <label for="password" class="control-label">Wachtwoord</label>
+                            <label for="password" class="control-label">Contraseña</label>
 
                             <div>
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -44,7 +44,7 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember"
-                                            {{ old('remember') ? 'checked' : '' }}> Login onthouden
+                                            {{ old('remember') ? 'checked' : '' }}> Recordar inicio de sesión
                                     </label>
                                 </div>
                             </div>
